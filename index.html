@@ -1,6 +1,101 @@
-<h1> Jessie Srinivas </h1>
-<ul> 
-    <li>Old internet enjoyer</li>
-    <li>Teacher</li>
-    <li>Programmer</li>
-</ul>
+<!DOCTYPE html>
+ <html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+        </style>
+ <style>
+    body{
+        background-color:tan;
+        color:black;
+        font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', cursive;
+        text-shadow: 1px 1px 1px lightgray;
+          }
+          button{border-radius: 0;;}
+ </style>
+ <link href="crazy.css" rel="alternate stylesheet" title="Crazy" />
+ <script>
+    function getStyleSheet(unique_title) {
+  for (const sheet of document.styleSheets) {
+    if (sheet.title === unique_title) {
+      return sheet;
+    }
+  }
+}
+    choices=["Hey!", "You made it!", "Nice to see you!", "Welcome!", "Just like Minecraft", "Welcome to my blog"]
+    var crazy=false;
+    var crazychild;
+    window.onload = (event) =>{
+        document.getElementById("splash").innerText=choices[Math.floor(Math.random() * choices.length)];
+         crazychild = getStyleSheet('Crazy');
+    }
+    function crazytime(){
+        crazy = !crazy;
+        if(crazy){
+            crazychild.disabled = false;
+        }
+        else{
+            crazychild.disabled = true;
+        }
+    }
+ </script>
+</head>
+<body style="height:80vh; margin:30px;">
+    <div style="display: flex; justify-content:flex-start; height: 100%; ">
+        <div style="background-color: lightgray; margin:0; padding: 10px; height: 100%; max-width: 30%;" > 
+             <h1 id="splash"> </h1>
+             <h2> Important Links! </h2>
+            <ul>
+                <li>
+                    <a href="https://medium.com/@lovetheblahaj">Medium Blog</a>
+                </li>
+                <li>
+                    <a href="https://chef.jessie.id" >Recipies</a>
+                </li>
+                <li>
+                    <a href="https://github.com/blahajjessie/">Github</a>
+                </li>
+                <li>
+                    <a>My resume!</a>
+                </li>
+                <li>
+                    For more info, email me at <a href="mailto:me@jessie.id">me@jessie.id</a>
+                </li>
+                <li> In case of boredom, free snake or ball!
+                    <div>
+                        <span id=snake float="left">SNEK </span> <span id=ball style="float:right; margin:20px;"> ()</span>
+                    </div>
+                </li>
+            </ul>
+        For accessibility reasons, this site defaults to its accessible state. To toggle between the web 1.0 and accessible versions,  
+        <div>         <blink class="blink"><button onclick="crazytime()" id="crazytime"> Press here!</button></blink>
+        </div>
+        </div>
+        <div style="background-color: white; width:100%; height:100%; padding:10px;">
+            <h1> Jessie Srinivas </h1>
+            <h2> Who am I?</h2>
+            <p>
+                My name is Jessie Srinivas, 
+            </p>
+            <h2>Why is my site like this?</h2>
+            <p>
+                I am nostalgic for the "bad design" of the 90's internet. 
+                The internet is bland nowadays, dominated by how much people focus on blending in and modern design.
+                I wanted to do something different.  
+            </p>
+            <h2> What do i do?</h2>
+            <ul> 
+                <li>Old internet enjoyer</li>
+                <li>Teacher</li>
+                <li>Programmer</li>
+            </ul>
+            <h2> Projects that I'm Proud of!</h2>
+        </div>
+    </div>
+
+</body>
+ </html>
+

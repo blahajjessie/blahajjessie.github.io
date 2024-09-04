@@ -1,0 +1,28 @@
+blink { animation: blink 1s step-end infinite; }
+@keyframes blink {
+    67% { opacity: 0;}
+}
+h1{
+    animation: big 10s infinite;
+}
+@keyframes big {
+    33%{font-size:x-large}
+    66%{color:rgb(72, 0, 94)}
+}
+body{
+    animation: swing 1s infinite alternate-reverse; 
+
+}
+@keyframes swing{
+    100% {text-shadow: 3px 0px 1px gray; 
+    background-color: aqua;}
+    75% {text-shadow: 1px 2px 1px gray;}
+
+    50% {text-shadow: 0px 3px 1px gray;
+    background-color: teal;}
+    25% {text-shadow: -1px 2px 1px gray;}
+
+    0% {text-shadow: -3px 0px 1px gray;
+    background-color: green;}
+
+}
