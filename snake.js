@@ -1,8 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> d8b736f (snake works)
+=======
+>>>>>>> 2902c19 (snake is better)
 var boardx = 20;
 var boardy = 50;
 var board = []
@@ -116,12 +119,16 @@ class snake{
         
         // update the snake
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.head = newhead;
 =======
 
         this.head = newhead;
         
 >>>>>>> d8b736f (snake works)
+=======
+        this.head = newhead;
+>>>>>>> 2902c19 (snake is better)
 
         // check if we eated
         if (this.head.dot.isApple){
@@ -131,10 +138,13 @@ class snake{
             // create a new apple
             makeApple();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
             
 >>>>>>> d8b736f (snake works)
+=======
+>>>>>>> 2902c19 (snake is better)
         }
         else{
             // set the old tail
@@ -142,6 +152,7 @@ class snake{
             this.tail.prev.next = null;
             this.tail.prev.istail = true;
             this.tail = this.tail.prev;
+<<<<<<< HEAD
 <<<<<<< HEAD
         }
         return true;
@@ -151,6 +162,10 @@ class snake{
         return true;
         
 >>>>>>> d8b736f (snake works)
+=======
+        }
+        return true;
+>>>>>>> 2902c19 (snake is better)
     }
     turn(direction){
         if (this.direction[0] == -1 * direction[0] || this.direction[1] == -1 * direction[1]){
@@ -158,22 +173,28 @@ class snake{
         }
         this.direction = direction;
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
 }
 
 =======
 
+=======
+>>>>>>> 2902c19 (snake is better)
     }
-
 }
 
+<<<<<<< HEAD
 
 
 >>>>>>> d8b736f (snake works)
+=======
+>>>>>>> 2902c19 (snake is better)
 function printBoard(gameboard, thisSnake){
 
     let str = "";
     for (let i of gameboard){
+<<<<<<< HEAD
 <<<<<<< HEAD
         str += "|";
         for (let j of i ){
@@ -183,6 +204,10 @@ function printBoard(gameboard, thisSnake){
         for (let j of i ){
             
 >>>>>>> d8b736f (snake works)
+=======
+        str += "|";
+        for (let j of i ){
+>>>>>>> 2902c19 (snake is better)
             if(j.isApple){
                 str += "○";
             }
@@ -204,9 +229,12 @@ function printBoard(gameboard, thisSnake){
     document.getElementById("gameboard").innerHTML = str;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> d8b736f (snake works)
+=======
+>>>>>>> 2902c19 (snake is better)
 var snek = new snake(4, 4, 3)
 
 makeApple();
@@ -217,10 +245,13 @@ var runner = setInterval(()=>{
         alert("game lost");
         stopgame();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // clearInterval(runner);
         
 >>>>>>> d8b736f (snake works)
+=======
+>>>>>>> 2902c19 (snake is better)
     }
 }, 100);
 
@@ -232,6 +263,7 @@ function stopgame(){
 addEventListener("keydown", (event)=>{
     if(event.key == "ArrowUp"){
         snek.turn(left);
+<<<<<<< HEAD
 <<<<<<< HEAD
     }
     if(event.key == "ArrowDown"){
@@ -245,25 +277,24 @@ addEventListener("keydown", (event)=>{
 =======
         // console.log ("up");
 
+=======
+>>>>>>> 2902c19 (snake is better)
     }
     if(event.key == "ArrowDown"){
         snek.turn(right);
-        // console.log ("down");
-
-
     }
     if(event.key == "ArrowLeft"){
         snek.turn(downwards);
-        // console.log ("left");
-
-
     }
     if(event.key == "ArrowRight"){
         snek.turn(upwards);
+<<<<<<< HEAD
         // console.log ("right");
 
 
 >>>>>>> d8b736f (snake works)
+=======
+>>>>>>> 2902c19 (snake is better)
     }
 })
 
