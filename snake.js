@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> d8b736f (snake works)
 var boardx = 20;
 var boardy = 50;
 var board = []
@@ -110,7 +115,13 @@ class snake{
         this.head.prev = newhead;
         
         // update the snake
+<<<<<<< HEAD
         this.head = newhead;
+=======
+
+        this.head = newhead;
+        
+>>>>>>> d8b736f (snake works)
 
         // check if we eated
         if (this.head.dot.isApple){
@@ -119,6 +130,11 @@ class snake{
             
             // create a new apple
             makeApple();
+<<<<<<< HEAD
+=======
+
+            
+>>>>>>> d8b736f (snake works)
         }
         else{
             // set the old tail
@@ -126,23 +142,47 @@ class snake{
             this.tail.prev.next = null;
             this.tail.prev.istail = true;
             this.tail = this.tail.prev;
+<<<<<<< HEAD
         }
         return true;
+=======
+
+        }
+        return true;
+        
+>>>>>>> d8b736f (snake works)
     }
     turn(direction){
         if (this.direction[0] == -1 * direction[0] || this.direction[1] == -1 * direction[1]){
             return;
         }
         this.direction = direction;
+<<<<<<< HEAD
     }
 }
 
+=======
+
+    }
+
+}
+
+
+
+>>>>>>> d8b736f (snake works)
 function printBoard(gameboard, thisSnake){
 
     let str = "";
     for (let i of gameboard){
+<<<<<<< HEAD
         str += "|";
         for (let j of i ){
+=======
+        str += "|"
+
+        for (let j of i ){
+            
+>>>>>>> d8b736f (snake works)
             if(j.isApple){
                 str += "○";
             }
@@ -163,6 +203,10 @@ function printBoard(gameboard, thisSnake){
     }
     document.getElementById("gameboard").innerHTML = str;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d8b736f (snake works)
 var snek = new snake(4, 4, 3)
 
 makeApple();
@@ -172,6 +216,11 @@ var runner = setInterval(()=>{
     if (!res){
         alert("game lost");
         stopgame();
+<<<<<<< HEAD
+=======
+        // clearInterval(runner);
+        
+>>>>>>> d8b736f (snake works)
     }
 }, 100);
 
@@ -183,6 +232,7 @@ function stopgame(){
 addEventListener("keydown", (event)=>{
     if(event.key == "ArrowUp"){
         snek.turn(left);
+<<<<<<< HEAD
     }
     if(event.key == "ArrowDown"){
         snek.turn(right);
@@ -192,6 +242,28 @@ addEventListener("keydown", (event)=>{
     }
     if(event.key == "ArrowRight"){
         snek.turn(upwards);
+=======
+        // console.log ("up");
+
+    }
+    if(event.key == "ArrowDown"){
+        snek.turn(right);
+        // console.log ("down");
+
+
+    }
+    if(event.key == "ArrowLeft"){
+        snek.turn(downwards);
+        // console.log ("left");
+
+
+    }
+    if(event.key == "ArrowRight"){
+        snek.turn(upwards);
+        // console.log ("right");
+
+
+>>>>>>> d8b736f (snake works)
     }
 })
 

@@ -3,7 +3,7 @@ blink { animation: blink 1s step-end infinite; }
     67% { opacity: 0;}
 }
 h1{
-    animation: big 10s infinite;
+    animation: blink 10s infinite;
 }
 @keyframes big {
     33%{font-size:x-large}

@@ -1,0 +1,42 @@
+body{
+    background-color:slategray;
+    color:black;
+    font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', cursive;
+    text-shadow: 1px 1px 1px lightgray;
+    height:80vh; margin:30px;
+}
+
+.container{
+    display: flex;
+    justify-content:flex-start;
+    height: 100%;
+}
+button{border-radius: 0;;}
+.nav{
+    background-color: lightgray; margin:0; padding: 10px; height: 100%; max-width: 30%;
+}
+.maincontent{
+    background-color: white; width:100%; height:100%; padding:10px;
+}
+.post{
+    background-color: darkslategray;
+    width: 90%;
+    padding:2%;
+    margin: 2%;
+    color:white;
+}
+
+.post div:nth-child(2){
+    padding:2%;
+    border: 1px;
+    border-color: aliceblue;
+    border-style: solid;
+}
+.post div:nth-child(2) ul:first-child{
+    margin:0;
+    padding-left:2%;
+}
+.maincontent{
+    overflow: scroll;
+
+}
