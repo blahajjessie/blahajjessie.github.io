@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -7,6 +8,9 @@
 =======
 >>>>>>> 2902c19 (snake is better)
 var boardx = 20;
+=======
+var boardx = 50;
+>>>>>>> 0a865f6 (snake updated and working on brick)
 var boardy = 50;
 var board = []
 
@@ -76,12 +80,14 @@ class snake{
             curr = curr.next;
 
         }
+        this.turnout = false;
         this.tail = curr;
         this.tail.next = null;
         this.myinterval = null;
+        this.olddirection = this.direction;
     }
     hitWall(){
-        return !(this.head.dot.x > 0 && this.head.dot.x < boardx && this.head.dot.y >0 && this.head.dot.y < boardy);
+        return !(this.head.dot.x >= 0 && this.head.dot.x < boardx && this.head.dot.y >=0 && this.head.dot.y < boardy);
     }
 
     hitSelf(){
@@ -97,6 +103,8 @@ class snake{
         return false;
     }
     move(){
+        this.turnout = false;
+        this.olddirection = this.direction;
         let nextx = this.head.dot.x + this.direction[0]
         let nexty = this.head.dot.y + this.direction[1]
         if (nextx >= boardx || nexty >=boardy || nextx <0 || nexty <0) {
@@ -106,7 +114,7 @@ class snake{
 
         let nextdot = board[nextx][nexty]
 
-        if (typeof nextdot === "undefined" || this.hitWall()) return false;
+        if (typeof nextdot === "undefined" || this.hitWall() ) return false;
 
         let newhead = new snakepart(nextdot, true, false);
         newhead.next = this.head;
@@ -155,6 +163,7 @@ class snake{
 <<<<<<< HEAD
 <<<<<<< HEAD
         }
+        if (this.hitSelf()) return false;
         return true;
 =======
 
@@ -168,12 +177,20 @@ class snake{
 >>>>>>> 2902c19 (snake is better)
     }
     turn(direction){
+        if (this.turnout){
+            this.direction = this.olddirection;
+        }
         if (this.direction[0] == -1 * direction[0] || this.direction[1] == -1 * direction[1]){
             return;
         }
+        this.olddirection = this.direction;
         this.direction = direction;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        this.turnout = true;
+>>>>>>> 0a865f6 (snake updated and working on brick)
     }
 }
 
@@ -193,10 +210,20 @@ class snake{
 function printBoard(gameboard, thisSnake){
 
     let str = "";
+    for (let k = 0; k <= 1+ boardx; k++){
+        str += "▄"
+    }
+    str += "\n"
     for (let i of gameboard){
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         str += "|";
+=======
+
+
+        str += "█";
+>>>>>>> 0a865f6 (snake updated and working on brick)
         for (let j of i ){
 =======
         str += "|"
@@ -209,11 +236,11 @@ function printBoard(gameboard, thisSnake){
         for (let j of i ){
 >>>>>>> 2902c19 (snake is better)
             if(j.isApple){
-                str += "○";
+                str += "●";
             }
             else if (j.isSnake){
                 if(j == thisSnake.head.dot){
-                    str += "<"
+                    str += ["<", ">", "v", '^'][directions.indexOf(thisSnake.direction)]
                 }
                 else{
                     str += "="
@@ -223,11 +250,16 @@ function printBoard(gameboard, thisSnake){
                 str += " ";
             }
         }
-        str += "|\n";
+        str += "█\n";
 
     }
+    for (let k = 0; k <= 1+ boardx; k++){
+        str += "▀"
+    }
+    str += "\n"
     document.getElementById("gameboard").innerHTML = str;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -236,13 +268,15 @@ function printBoard(gameboard, thisSnake){
 =======
 >>>>>>> 2902c19 (snake is better)
 var snek = new snake(4, 4, 3)
+=======
+var snek = new snake(49, 4, 3)
+>>>>>>> 0a865f6 (snake updated and working on brick)
 
 makeApple();
 var runner = setInterval(()=>{
     res = snek.move();
     printBoard(board, snek);
     if (!res){
-        alert("game lost");
         stopgame();
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -256,8 +290,9 @@ var runner = setInterval(()=>{
 }, 100);
 
 function stopgame(){
-    console.log(runner);
     clearInterval(runner);
+    printBoard(board, snek);
+    alert("game lost");
 }
 
 addEventListener("keydown", (event)=>{
@@ -296,5 +331,6 @@ addEventListener("keydown", (event)=>{
 =======
 >>>>>>> 2902c19 (snake is better)
     }
+    printBoard(board, snek);
 })
 
