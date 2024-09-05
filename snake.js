@@ -1,4 +1,4 @@
-var boardx = 20;
+var boardx = 50;
 var boardy = 50;
 var board = []
 
@@ -57,6 +57,8 @@ class snake{
         this.head = new snakepart(board[x][y], true, false);
         let curr = this.head;
         this.head.prev = null;
+        this.olddir = upwards;
+        this.timeout = false;
         // Generate len pieces after the snake, with the last one being the tail
         for (let i = 0; i <= len; i++){
             curr.next = new snakepart(board[curr.dot.x - this.direction [0]][curr.dot.y - this.direction[1]], false, i == len)
@@ -72,8 +74,9 @@ class snake{
         this.tail.next = null;
         this.myinterval = null;
     }
+
     hitWall(){
-        return !(this.head.dot.x > 0 && this.head.dot.x < boardx && this.head.dot.y >0 && this.head.dot.y < boardy);
+        return !(this.head.dot.x >= 0 && this.head.dot.x < boardx && this.head.dot.y >= 0 && this.head.dot.y < boardy);
     }
 
     hitSelf(){
@@ -89,6 +92,7 @@ class snake{
         return false;
     }
     move(){
+        this.timeout = false;
         let nextx = this.head.dot.x + this.direction[0]
         let nexty = this.head.dot.y + this.direction[1]
         if (nextx >= boardx || nexty >=boardy || nextx <0 || nexty <0) {
@@ -111,7 +115,9 @@ class snake{
         
         // update the snake
         this.head = newhead;
-
+        if (this.hitSelf()){
+            return false;
+        }
         // check if we eated
         if (this.head.dot.isApple){
             this.head.dot.isApple = false;
@@ -128,13 +134,19 @@ class snake{
             this.tail.prev.istail = true;
             this.tail = this.tail.prev;
         }
+        this.olddir = this.direction;
         return true;
     }
     turn(direction){
+        if (this.timeout){
+            this.direction = this.olddir;
+        }
+
         if (this.direction[0] == -1 * direction[0] || this.direction[1] == -1 * direction[1]){
             return;
         }
         this.direction = direction;
+        this.timeout = true;
     }
 }
 
@@ -143,16 +155,30 @@ function printBoard(gameboard, thisSnake){
 
     let str = "";
     for (let i of gameboard){
-        str += "|";
-        for (let j of i ){
-        str += "|"
+        str+= "▄"
+    }
+    str += "\n"
+    for (let i of gameboard){
+        str += "▎";
+        str += "\n";
         for (let j of i ){
             if(j.isApple){
-                str += "○";
+                str += "●";
             }
             else if (j.isSnake){
                 if(j == thisSnake.head.dot){
-                    str += "<"
+                    if (thisSnake.direction == upwards){
+                        str += "<"
+                    }
+                    if (thisSnake.direction == downwards){
+                        str += ">"
+                    }
+                    if (thisSnake.direction == left){
+                        str += "v"
+                    }
+                    if (thisSnake.direction == right){
+                        str += "^"
+                    }
                 }
                 else{
                     str += "="
@@ -162,12 +188,18 @@ function printBoard(gameboard, thisSnake){
                 str += " ";
             }
         }
-        str += "|\n";
+
+        str += "▎\n";
+
 
     }
+    for (let i of gameboard){
+        str += "▄"
+    }
+    str += "\n"
     document.getElementById("gameboard").innerHTML = str;
     
-    }
+    
 }
 var snek = new snake(4, 4, 3)
 
@@ -189,6 +221,7 @@ function stopgame(){
 }
 
 addEventListener("keydown", (event)=>{
+    
     if(event.key == "ArrowUp"){
         snek.turn(left);
     }
@@ -201,5 +234,6 @@ addEventListener("keydown", (event)=>{
     if(event.key == "ArrowRight"){
         snek.turn(upwards);
     }
+    printBoard(board, snek);
 })
 
