@@ -208,13 +208,15 @@ class Ball{
     touching_point(p:Coord, side= 0){
         // The only thing we do for the paddle, triggers for -1
         if (side <=0 ){
-            if (Math.sqrt(this.radius + (p.x - this.center[axis.xaxis]) ** 2) > p.y){
-
+            if (-Math.sqrt(this.radius + (p.x - this.center[axis.xaxis]) ** 2) < p.y && (p.y < this.center.y)){
+                return true;
             }
         }
         // for any box
         if (side >=0){
-
+            if (Math.sqrt(this.radius + (p.x - this.center[axis.xaxis]) ** 2) > p.y && (p.y > this.center.y)){
+                return true;
+            }
         }
     }
     
