@@ -1,0 +1,153 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+
+
+}
+.wrap{
+  border-radius: 10px;
+    border-style: solid;
+    border-color:white;
+}
+.row {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+}
+
+.box {
+    border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+font-size: 200%;
+  width:15vw;
+  height:15vh;
+  max-width: 15vh;
+  max-height:15vw;
+  display: flex;
+  background-color: darkgray;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+* {
+  margin: 0px !important;
+}
+
+h1{
+font-family: 'Noto Sans HK', sans-serif;
+  font-size: 10vh;;
+  display: flex;
+  justify-content: center;
+  color:white;
+}
+
+
+.n2{
+  background-color: #FFF;
+}
+.n0{
+  background-color: black;
+  color:black;
+}
+.n4{
+  background-color: #999;
+}
+.n8{
+    background-color:#ffefef ;
+}
+.n16{
+  background-color:#ffd8d8;
+}
+.n32{
+  background-color:#fcc2c2;
+}
+.n64{
+  background-color:#fcecc2;
+}
+.n128{
+  background-color:#f0fcc2;
+}
+.n256{
+  background-color:#defcc2;
+}
+.n512{
+  background-color:#c2fcc5;
+}
+.n1024{
+  background-color:#c2fce6;
+}
+.n4096{
+  background-color:#ff00d8;
+}
+
+.n8192{
+  background-image: linear-gradient(red, yellow);
+}
+.n16384{
+  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+}
+
+
+.n32768{
+  background: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet,red,orange,yellow,green,blue,indigo,violet,red);
+  background-size: 200% 100%;
+  font-family: cursive !important;
+  text-shadow: 2px 2px black;
+  color:white;
+
+  -webkit-animation: rainbow .5s linear infinite;
+  -z-animation: rainbow .5s linear  infinite;
+  -o-animation: rainbow .5s linear  infinite;
+    animation: rainbow .5s linear  infinite;}
+
+  @-webkit-keyframes rainbow {
+      0%{background-position:0% 0%}
+      100%{background-position:100% 100%}
+
+  }
+  @-moz-keyframes rainbow {
+      0%{background-position:0% 0%}
+      100%{background-position:100% 100%}
+  }
+  @-o-keyframes rainbow {
+      0%{background-position:0% 0%}
+      100%{background-position:100% 100%}
+  }
+  @keyframes rainbow {
+      0%{background-position:0% 0%}
+      100%{background-position:100% 100%}
+
+}
+
+
+body{
+  background-color: black;
+    overflow: hidden;
+    width:100%;
+    height:90vh;
+      -webkit-overflow-scrolling: touch;
+}
+html{
+  height: 90vh;
+}
+ *{
+  overflow: hidden !important;
+
+}
+
+.new.n2{
+  background-color: #DFF !important;
+}
+
+.new.n4{
+  background-color: #799 !important;
+}
+.n2048{
+  background-color:black;
+  color:white;
+}

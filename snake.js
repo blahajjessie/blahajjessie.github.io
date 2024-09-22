@@ -237,3 +237,79 @@ addEventListener("keydown", (event)=>{
     printBoard(board, snek);
 })
 
+var center = NaN;
+const swipeThreshold = 20;
+// returns false if we shouldn t turn 
+getSwipe = (start, event)=>{
+    
+    xdist = start[0] - event.clientX;
+    ydist = start[1] - event.clientY;
+    if (Math.abs(xdist) < swipeThreshold && Math.abs(ydist) < swipeThreshold){
+        console.log("not far enough")
+        return false;
+    }
+
+    // Not a steep angle 
+    if (Math.abs(.636619 * Math.atan(Math.abs(xdist / ydist)) -.5) < .2 ){
+        console.log(Math.abs(.636619 * Math.atan(Math.abs(xdist / ydist)) -.5))
+        return false
+    }
+
+    distance = Math.sqrt(xdist ** 2 + ydist ** 2)
+    // yes i know this is cursed
+    dir = (xdist ** 2 > ydist ** 2)
+    console.log(xdist, ydist)
+    return [Math.sign(xdist) * dir, Math.sign(ydist) * (!dir)]
+}
+
+
+
+addEventListener("touchstart", (event) =>{
+    center = [event.touches[0].clientX, event.touches[0].clientY];
+});
+
+
+addEventListener("touchend", (event) =>{
+        if(event.touches.len >0 ){
+            console.log("double touch")
+            center = event.touches[0]
+        }
+        else{
+            center = NaN;
+        }
+
+
+});
+
+addEventListener("touchcancel", (event) =>{
+    if(event.touches.len >0 ){
+        center = event.touches[0]
+        console.log("double")
+    }
+    else{
+        center = NaN;
+    }
+});
+
+
+addEventListener("touchmove", (event) =>{
+        var dir = getSwipe(center, event.touches[0])
+        console.log(dir)
+
+        if(dir + [] ==  [-1, 0]){
+            snek.turn(upwards);
+        }
+        else if(dir  + [] == [1, 0]){
+            snek.turn(downwards);
+        }
+        else if(dir + [] == [0,1]){
+            snek.turn(left);
+        }
+        else if(dir + []  == [0,-1]){
+            snek.turn(right);
+        }
+        else{
+        }
+        printBoard(board, snek);
+});
+
