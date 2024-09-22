@@ -238,7 +238,7 @@ addEventListener("keydown", (event)=>{
 })
 
 var center = NaN;
-const swipeThreshold = 20;
+const swipeThreshold = 10;
 // returns false if we shouldn t turn 
 getSwipe = (start, event)=>{
     
