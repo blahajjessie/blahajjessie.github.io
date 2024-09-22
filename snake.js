@@ -1,6 +1,7 @@
 var boardx = 50;
 var boardy = 50;
 var board = []
+var dead = false;
 
 class snakepart{
     constructor(dotvar, ishead, istail){
@@ -20,13 +21,6 @@ class dot{
     }
 }
 
-for (let i = 0; i < boardx; i++){
-    let row = []
-    for (let j = 0; j < boardy; j++){
-        row.push(new dot(i,j));
-    }
-    board.push(row)
-}
 
 const upwards = [0,1];
 const downwards = [0,-1];
@@ -201,23 +195,45 @@ function printBoard(gameboard, thisSnake){
     
     
 }
-var snek = new snake(4, 4, 3)
+var snek;
 
-makeApple();
-var runner = setInterval(()=>{
-    res = snek.move();
-    printBoard(board, snek);
-    if (!res){
-        alert("game lost");
-        stopgame();
-        // clearInterval(runner);
-        
+function createGame(){
+    board = []
+    for (let i = 0; i < boardx; i++){
+        let row = []
+        for (let j = 0; j < boardy; j++){
+            row.push(new dot(i,j));
+        }
+        board.push(row)
     }
-}, 100);
+    snek = new snake(4, 4, 3)
+    makeApple();
+
+    return setInterval(()=>{
+        res = snek.move();
+        printBoard(board, snek);
+        if (!res){
+            alert("game lost. Double tap to restart");
+            stopgame();
+            // clearInterval(runner);
+            
+        }
+    }, 100);
+    
+}
+
+var runner = createGame();
+function restart(){
+    if (dead){
+        runner = createGame();
+        dead = false;
+    }
+}
 
 function stopgame(){
     console.log(runner);
     clearInterval(runner);
+    dead = true;
 }
 
 addEventListener("keydown", (event)=>{

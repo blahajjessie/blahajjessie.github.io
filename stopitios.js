@@ -14,7 +14,7 @@ window.onload = ()=>{
             return false;
         }
         event.preventDefault();
-    
+        restart();
      }
     
     no_scroll.addEventListener("touchstart", tapHandler);
