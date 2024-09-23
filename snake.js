@@ -1,5 +1,5 @@
-var boardx = 50;
-var boardy = 50;
+var boardx = 25;
+var boardy =  25;
 var board = []
 var dead = false;
 
