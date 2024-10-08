@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h1></h1>   
+        
+
+        <p id="players"></p>
+        <p id="turn"></p>
+        <button id="roll" onclick="roll=true;">Roll the dice</button>
+        <p id="outcome"></p>
+    </body>
+    <script>
+
+        let roll = false;
+        let dice = ()=> Math.floor(Math.random() * 6) + 1
+        let players = prompt("how many players")
+        var turn = 0;
+        let getString = (nspoons) => {
+            out = "";
+            for (let i = 0; i < players; i++){
+                out += "Player " + i + " has " + nspoons[i] + " spoons\n"
+            }
+            document.getElementById("players").innerHTML = out
+            document.getElementById("turn").innerHTML="Player " + turn +"'s roll"
+        }
+        let spoons = Array(players).fill(0)
+        for (let i =0; i < players; i++){
+            spoons[i] = dice();
+        }
+        var currentP = 0;
+        var gameend = false;
+        while(!gameend){
+            getString(spoons);
+            console.log("eep")
+
+            while(! roll){
+            console.log("eek")
+                
+            }
+            console.log("oop")
+
+            roll = false;
+            var event = ""
+            if (spoons[n] > 0){
+                var eve = dice()+ dice()
+                switch(eve){
+                    case 2: 
+                    spoons[n] = 0
+                    event = "Get hit by a bus.  Lose all your spoons"
+                    break;
+                    case 3: 
+                    spoons[n] -=4
+                    event = "Go to the DMV.-4 Spoons"
+                    break;
+                    case 4: 
+                    spoons[n] -=3
+                    event = "Surprise Family visit. Lose 3 spoons"
+                    break;
+                    case 5: 
+                    spoons[n] -=2
+                    event = "Have insomnia. -2 Spoons"
+                    break;
+                    case 6: 
+                    spoons[n] -=1
+                    event = "Do laundry. -1 spoon"
+                    break;
+                    case 7: 
+                    event = "Disasociate. Nothing changed"
+                    break;
+                    case 8: 
+                    spoons[n] +=1
+                    event = "Little treat. Gain a spoon"
+                    break;
+                    case 9: 
+                    spoons[n] +=2
+                    event = "The music is hitting extra hard. Gain 2 spoons"
+                    break;
+                    case 10: 
+                    spoons[n] +=3
+                    event = "Make a new friend. Add 3 spoons"
+                    break;
+                    case 11: 
+                    spoons[n] +=4
+                    event = "Your favorite band has a concert today! Gain 4 Spoons"
+                    break;
+                    case 12: 
+                    spoons[n] +=6
+                    event = "It's night time, and you got 3 meals and 8 hours of sleep. Add 6 spoons. The game is over"
+                    gameend = true;
+                    break;
+                }
+            }
+            else{
+                spoons[n] +=1;
+                event = "You had negative spoons, but you gained one"
+            }
+            document.getElementById("outcome").innerHTML = event;
+            currentP ++;
+            currentP %=players;
+        }
+    </script>
+</html>
