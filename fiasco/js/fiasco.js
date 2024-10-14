@@ -1,5 +1,5 @@
 
-var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a", "fiasco/fiasco2.m4a"]
+var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a", "fiasco/fiasco3.mp3"]
 var curr  = 1;
 var e1player
 window.onload=()=>{
