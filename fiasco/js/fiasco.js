@@ -1,5 +1,5 @@
 
-var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a"]
+var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a", "fiasco/fiasco2.m4a"]
 var curr  = 1;
 var e1player
 window.onload=()=>{
@@ -27,7 +27,7 @@ function nextep(){
       title: 'Episode ' + (curr + 1),
       artist: 'Fiasco',
       cover: 'https://shikwasa.js.org/assets/logo.png',
-      src: 'fiasco/fiasco1.m4a',
+      src: 'fiasco/fiasco' + (curr + 1 )+ '.m4a'
     }
   })
 
