@@ -16,12 +16,15 @@ window.onload=()=>{
       position:"top"
     }
   })
-
-  document.body.style.zoom = "200%";
-  
-
+  updateButtons();
 }
 
+function updateButtons(){
+  document.getElementById("prevep").innerText="Go to episode " + ((curr - 1 + eps.length) % eps.length + 1);
+  document.getElementById("nextep").innerText="Go to episode " + ((curr + 1 ) % eps.length  + 1)  ;
+  document.getElementById("play").innerText="Play/Pause\nepisode " + (curr + 1) ;
+
+}
 function nextep(){
   curr ++;
   curr = curr % eps.length
@@ -30,6 +33,9 @@ function nextep(){
       artist: 'Fiasco',
       src:  eps[curr]}
     )
+  updateButtons();
+
+
 }
 
   function prevep(){
@@ -42,6 +48,8 @@ function nextep(){
         src:  eps[curr]
       }
     )
+  updateButtons();
+
   }
   
   
