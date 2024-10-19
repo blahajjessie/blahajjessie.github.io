@@ -16,6 +16,8 @@ window.onload=()=>{
       position:"top"
     }
   })
+
+  document.body.style.zoom = "200%";
   
 
 }
