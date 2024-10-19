@@ -1,22 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AThe fiasco podcasts</title>
+    <title>The fiasco podcasts</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shikwasa@2.2.1/dist/shikwasa.min.js"></script>
     <script type="text/javascript" src="js/fiasco.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shikwasa@2.2.1/dist/style.css">
-
+    <style>
+      .butt{
+        margin:0px;
+        padding:0px;
+        width: 32%;
+        height:20dvh;
+        font-size: large;
+      }
+      body{
+        padding:0px;
+        margin:0px;
+        zoom:200%
+      }
+      .shk-cover{
+        visibility: hidden;
+        width:0px;
+      }
+      .shk-main{
+        max-width: 100%;
+      }
+      /*
+      .fiascoe1{
+        font-size: xx-large;
+        height: 40dvh;
+      }
+      .shk-btn svg{
+        width:100px;
+        height:100px;
+      }
+      .shk-player{
+        height:200px;
+      }
+      .shk-controls{
+        width:500px;
+      } */
+      body > div{
+        width:50dvw;
+        margin:0px;
+        padding:0px;
+      }
+    </style>
 
   </head>
   <body>
-    <div id="holder">
-      <div class="fiascoe1"></div>
+    <div id="holder" >
       <div class="fiascoe1"></div>
 
     </div>
 
-
-    <button id="nextep" onclick="nextep()">Next Episode</button>
+    <div>
+      <button width="50vw" id="prevep" class=butt onclick="prevep()">Prev Episode</button>
+      <button width="50vw" id="play" class=butt onclick="play()">Play/Pause</button>
+      
+      <button width="50vw" id="nextep" class=butt onclick="nextep()">Next Episode</button>
+  
+    </div>
 
    </body>  
