@@ -10,7 +10,7 @@ window.onload=()=>{
       title: 'Episode ' + (curr + 1),
       artist: 'Fiasco',
       cover: 'https://shikwasa.js.org/assets/logo.png',
-      src: 'fiasco/fiasco' + (curr + 1 )+ '.m4a',
+      src: eps[curr]
     }
   })
   
@@ -27,7 +27,7 @@ function nextep(){
       title: 'Episode ' + (curr + 1),
       artist: 'Fiasco',
       cover: 'https://shikwasa.js.org/assets/logo.png',
-      src: 'fiasco/fiasco' + (curr + 1 )+ '.m4a'
+      src:  eps[curr]
     }
   })
 
