@@ -1,6 +1,6 @@
 
-var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a", "fiasco/fiasco3.mp3", "fiasco/fiascoe4.opus"]
-var curr  = 2;
+var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a", "fiasco/fiasco3.mp3", "fiasco/fiascoe4.opus", "fiasco/fiascoe5.mp3"]
+var curr  = 4;
 var e1player
 
 setInterval(()=>{
