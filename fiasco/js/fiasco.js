@@ -1,6 +1,6 @@
 
-var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a", "fiasco/fiasco3.mp3", "fiasco/fiascoe4.opus", "fiasco/fiascoe5.mp3"]
-var curr  = 4;
+var eps = ["fiasco/fiasco1.m4a", "fiasco/fiasco2.m4a", "fiasco/fiasco3.mp3", "fiasco/fiascoe4.opus", "fiasco/fiascoe5.mp3", "fiasco/e6.m4a", "fiasco/e7.m4a"]
+var curr  = 6;
 var e1player
 
 setInterval(()=>{
@@ -60,18 +60,22 @@ window.onload=()=>{
       }
   }
   updateButtons();
-  saver = setInterval(()=>{
-    let current = document.cookie;
-    document.cookie = `wasSomewhere=true` ;
-    document.cookie =  `ep=${curr};`
-    document.cookie = `time=${e1player.currentTime}`
-    document.cookie = `speed=${e1player.playbackRate}`;
-    document.cookie = `speed=${e1player.playbackRate}; `;
-    var someDate = new Date();
-    var result = someDate.setDate(someDate.getDate() + 3 );
-    document.cookie = `expires=${someDate.toUTCString()}`
-  
-  }, 1000)
+  // a small hack to make it so if you close the page itll still stay alive
+  setTimeout(() => {
+    saver = setInterval(()=>{
+      let current = document.cookie;
+      document.cookie = `wasSomewhere=true` ;
+      document.cookie =  `ep=${curr};`
+      document.cookie = `time=${e1player.currentTime}`
+      document.cookie = `speed=${e1player.playbackRate}`;
+      document.cookie = `speed=${e1player.playbackRate}; `;
+      var someDate = new Date();
+      var result = someDate.setDate(someDate.getDate() + 3 );
+      document.cookie = `expires=${someDate.toUTCString()}`
+    
+    }, 1000)
+  }, 1000);
+
 
 }
 
