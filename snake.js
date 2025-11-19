@@ -1,5 +1,21 @@
-var boardx = 25;
-var boardy =  25;
+
+var maxh = ()=> Math.max(document.getElementById("noScroll").clientWidth, document.getElementById("noScroll").clientHeight)
+var vmin =1000;
+
+function setScale(){
+    vmin = maxh();
+    let ctx = document.getElementById("snakey").getContext("2d")
+    ctx.canvas.width = vmin;
+    ctx.canvas.height = vmin;
+    console.log(vmin)
+}
+window.onload = setScale
+window.setTimeout(setScale, 10)
+
+window.onresize = setScale;
+const squareSize = 25
+const boardx = squareSize;
+const boardy =  squareSize;
 var board = []
 var dead = false;
 
@@ -146,52 +162,61 @@ class snake{
 
 
 function printBoard(gameboard, thisSnake){
+    let canvas = document.getElementById("snakey").getContext("2d");
+    const border = 10;
+    canvas.clearRect(0, 0, maxh(), maxh());
 
-    let str = "";
+    canvas.strokeRect(border, border, maxh() - 2 * border, maxh() - 2 * border)
+    let realBoard = maxh() - border * 2
+    let square = realBoard / (squareSize);
+    // let str = "";
+    // for (let i of gameboard){
+    //     str+= "▄"
+    // }
+    // str += "\n"
     for (let i of gameboard){
-        str+= "▄"
-    }
-    str += "\n"
-    for (let i of gameboard){
-        str += "▎";
-        str += "\n";
+        // str += "▎";
+        // str += "\n";
         for (let j of i ){
             if(j.isApple){
-                str += "●";
+                canvas.fillRect(border + square * j.y, border+ square * j.x, square, square)
             }
             else if (j.isSnake){
+
                 if(j == thisSnake.head.dot){
+                    canvas.fillRect(border + square * j.y, border +  square * j.x, square, square)
+
                     if (thisSnake.direction == upwards){
-                        str += "<"
+                        // str += "<"
                     }
                     if (thisSnake.direction == downwards){
-                        str += ">"
+                        // str += ">"
                     }
                     if (thisSnake.direction == left){
-                        str += "v"
+                        // str += "v"
                     }
                     if (thisSnake.direction == right){
-                        str += "^"
+                        // str += "^"
                     }
                 }
                 else{
-                    str += "="
+                    canvas.fillRect(border + square * j.y, border +  square * j.x, square, square)
                 }
             }
             else{
-                str += " ";
+                // str += " ";
             }
         }
 
-        str += "▎\n";
+        // str += "▎\n";
 
 
     }
-    for (let i of gameboard){
-        str += "▄"
-    }
-    str += "\n"
-    document.getElementById("gameboard").innerHTML = str;
+    // for (let i of gameboard){
+    //     str += "▄"
+    // }
+    // str += "\n"
+    // document.getElementById("gameboard").innerHTML = str;
     
     
 }
@@ -213,7 +238,12 @@ function createGame(){
         res = snek.move();
         printBoard(board, snek);
         if (!res){
-            alert("game lost. Double tap to restart");
+            // alert("game lost. Double tap to restart");
+            document.getElementById("snakey").getContext("2d").font="48px sans-serif"
+
+            document.getElementById("snakey").getContext("2d").fillStyle="red"
+
+            document.getElementById("snakey").getContext("2d").fillText("You lose. Double tap to restart.", 100,100, maxh()-200)
             stopgame();
             // clearInterval(runner);
             
