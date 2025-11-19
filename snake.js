@@ -1,5 +1,5 @@
 // a reasonable speed is between 1 and 5
-const speed = 3
+const speed = 2
 const squareSize = 20;
 
 
@@ -99,6 +99,7 @@ class snake {
         return false;
     }
     move() {
+        this.smartTurn(keyCache);
         this.timeout = false;
         let nextx = this.head.dot.x + this.direction[0]
         let nexty = this.head.dot.y + this.direction[1]
@@ -149,6 +150,17 @@ class snake {
         }
         this.direction = direction;
         this.timeout = true;
+    }
+    smartTurn(arr){
+        if (arr.length <= 0) return;
+        console.log(arr.length);
+        let dir = arr.shift();
+        // pop from the list until we find a valid direction
+        if (this.direction[0] ** 2 ==  dir[0] ** 2 || this.direction[1] ** 2 == dir[1] ** 2) {
+            this.smartTurn(arr);
+            return;
+        }
+        this.turn(dir)
     }
 }
 
@@ -240,22 +252,24 @@ function stopgame() {
     dead = true;
 }
 
+var keyCache = []
+
 addEventListener("keydown", (event) => {
     if (dead) {
         restart()
         return;
     }
-    if (event.key == "ArrowUp") {
-        snek.turn(left);
+    if (event.key == "ArrowUp" || event.key == "w") {
+        keyCache.unshift(left);
     }
-    if (event.key == "ArrowDown") {
-        snek.turn(right);
+    if (event.key == "ArrowDown"  || event.key == "s") {
+        keyCache.unshift(right);
     }
-    if (event.key == "ArrowLeft") {
-        snek.turn(downwards);
+    if (event.key == "ArrowLeft"  || event.key == "a") {
+        keyCache.unshift(downwards);
     }
-    if (event.key == "ArrowRight") {
-        snek.turn(upwards);
+    if (event.key == "ArrowRight"  || event.key == "d") {
+        keyCache.unshift(upwards);
     }
     printBoard(board, snek);
 })
