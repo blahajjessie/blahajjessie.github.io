@@ -90,7 +90,7 @@ class snake {
         let headx = this.head.dot.x;
         let heady = this.head.dot.y;
         let piece = this.head.next;
-        while (piece && piece !== null && piece.next &&piece.next !== null) {
+        while (piece && piece !== null && piece.next && piece.next !== null) {
             if (piece.dot.x == headx && piece.dot.y == heady) {
                 return true;
             }
@@ -154,12 +154,12 @@ class snake {
         this.direction = direction;
         this.timeout = true;
     }
-    smartTurn(arr){
+    smartTurn(arr) {
         if (arr.length <= 0) return;
         console.log(arr.length);
         let dir = arr.shift();
         // pop from the list until we find a valid direction
-        if (this.direction[0] ** 2 ==  dir[0] ** 2 || this.direction[1] ** 2 == dir[1] ** 2) {
+        if (this.direction[0] ** 2 == dir[0] ** 2 || this.direction[1] ** 2 == dir[1] ** 2) {
             this.smartTurn(arr);
             return;
         }
@@ -237,7 +237,7 @@ function createGame() {
             document.getElementById("snakey").getContext("2d").fillText("You lose. Press a key or swipe to restart.", 100, 100, maxh() - 200)
             stopgame();
         }
-    }, 200/speed);
+    }, 200 / speed);
 
 }
 
@@ -265,13 +265,13 @@ addEventListener("keydown", (event) => {
     if (event.key == "ArrowUp" || event.key == "w") {
         keyCache.unshift(left);
     }
-    if (event.key == "ArrowDown"  || event.key == "s") {
+    if (event.key == "ArrowDown" || event.key == "s") {
         keyCache.unshift(right);
     }
-    if (event.key == "ArrowLeft"  || event.key == "a") {
+    if (event.key == "ArrowLeft" || event.key == "a") {
         keyCache.unshift(downwards);
     }
-    if (event.key == "ArrowRight"  || event.key == "d") {
+    if (event.key == "ArrowRight" || event.key == "d") {
         keyCache.unshift(upwards);
     }
     printBoard(board, snek);
