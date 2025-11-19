@@ -1,3 +1,8 @@
+// a reasonable speed is between 1 and 5
+const speed = 3
+const squareSize = 20;
+
+
 var maxh = () => Math.max(document.getElementById("noScroll").clientWidth, document.getElementById("noScroll").clientHeight)
 
 function setScale() {
@@ -11,7 +16,6 @@ window.onload = setScale
 window.setTimeout(setScale, 10)
 
 window.onresize = setScale;
-const squareSize = 25
 const boardx = squareSize;
 const boardy = squareSize;
 var board = []
@@ -52,7 +56,6 @@ function makeApple() {
         newy = gen(boardy);
     }
     while (board[newx][newy].isApple || board[newx][newy].isSnake);
-
     board[newx][newy].isApple = true;
 }
 const directions = [upwards, downwards, left, right];
@@ -149,7 +152,6 @@ class snake {
     }
 }
 
-
 function printBoard(gameboard, thisSnake) {
     let canvas = document.getElementById("snakey").getContext("2d");
     const border = 10;
@@ -166,27 +168,27 @@ function printBoard(gameboard, thisSnake) {
 
                 canvas.fillRect(border + square * j.y, border + square * j.x, square, square)
                 canvas.fillStyle = "black"
-
             }
             else if (j.isSnake) {
 
                 if (j == thisSnake.head.dot) {
+                    // generic head
                     canvas.fillRect(border + square * j.y, border + square * j.x, square, square)
-
                     if (thisSnake.direction == upwards) {
-                        // str += "<"
+                        // upwards facing head
                     }
                     if (thisSnake.direction == downwards) {
-                        // str += ">"
+                        // Down facing head
                     }
                     if (thisSnake.direction == left) {
-                        // str += "v"
+                        // left head
                     }
                     if (thisSnake.direction == right) {
-                        // str += "^"
+                        // right head
                     }
                 }
                 else {
+                    // snake body
                     canvas.fillRect(border + square * j.y, border + square * j.x, square, square)
                 }
             }
@@ -196,6 +198,7 @@ function printBoard(gameboard, thisSnake) {
         }
     }
 }
+
 var snek;
 
 function createGame() {
@@ -214,13 +217,12 @@ function createGame() {
         res = snek.move();
         printBoard(board, snek);
         if (!res) {
-            // alert("game lost. Double tap to restart");
             document.getElementById("snakey").getContext("2d").font = "48px sans-serif"
             document.getElementById("snakey").getContext("2d").fillStyle = "blue"
             document.getElementById("snakey").getContext("2d").fillText("You lose. Press a key or swipe to restart.", 100, 100, maxh() - 200)
             stopgame();
         }
-    }, 100);
+    }, 200/speed);
 
 }
 
@@ -283,7 +285,6 @@ getSwipe = (start, event) => {
     return [Math.sign(xdist) * dir, Math.sign(ydist) * (!dir)]
 }
 
-
 addEventListener("touchstart", (event) => {
     center = [event.touches[0].clientX, event.touches[0].clientY];
 });
@@ -291,7 +292,6 @@ addEventListener("touchstart", (event) => {
 
 addEventListener("touchend", (event) => {
     if (event.touches.len > 0) {
-        console.log("double touch")
         center = event.touches[0]
     }
     else {
@@ -302,7 +302,6 @@ addEventListener("touchend", (event) => {
 addEventListener("touchcancel", (event) => {
     if (event.touches.len > 0) {
         center = event.touches[0]
-        console.log("double")
     }
     else {
         center = NaN;
