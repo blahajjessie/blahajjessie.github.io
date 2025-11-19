@@ -90,7 +90,7 @@ class snake {
         let headx = this.head.dot.x;
         let heady = this.head.dot.y;
         let piece = this.head.next;
-        while (piece && piece !== null) {
+        while (piece && piece !== null && piece.next &&piece.next !== null) {
             if (piece.dot.x == headx && piece.dot.y == heady) {
                 return true;
             }
@@ -136,6 +136,9 @@ class snake {
             this.tail.prev.next = null;
             this.tail.prev.istail = true;
             this.tail = this.tail.prev;
+        }
+        if (this.hitSelf()) {
+            return false;
         }
         this.olddir = this.direction;
         return true;
