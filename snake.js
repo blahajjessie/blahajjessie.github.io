@@ -165,7 +165,7 @@ function printBoard(gameboard, thisSnake){
     let canvas = document.getElementById("snakey").getContext("2d");
     const border = 10;
     canvas.clearRect(0, 0, maxh(), maxh());
-
+    canvas.fillStyle="black"
     canvas.strokeRect(border, border, maxh() - 2 * border, maxh() - 2 * border)
     let realBoard = maxh() - border * 2
     let square = realBoard / (squareSize);
@@ -179,7 +179,11 @@ function printBoard(gameboard, thisSnake){
         // str += "\n";
         for (let j of i ){
             if(j.isApple){
+                canvas.fillStyle="red"
+
                 canvas.fillRect(border + square * j.y, border+ square * j.x, square, square)
+                canvas.fillStyle="black"
+
             }
             else if (j.isSnake){
 
@@ -231,7 +235,7 @@ function createGame(){
         }
         board.push(row)
     }
-    snek = new snake(4, 4, 3)
+    snek = new snake(10, 4, 1)
     makeApple();
 
     return setInterval(()=>{
@@ -241,9 +245,9 @@ function createGame(){
             // alert("game lost. Double tap to restart");
             document.getElementById("snakey").getContext("2d").font="48px sans-serif"
 
-            document.getElementById("snakey").getContext("2d").fillStyle="red"
+            document.getElementById("snakey").getContext("2d").fillStyle="blue"
 
-            document.getElementById("snakey").getContext("2d").fillText("You lose. Double tap to restart.", 100,100, maxh()-200)
+            document.getElementById("snakey").getContext("2d").fillText("You lose. Press a key or swipe to restart.", 100,100, maxh()-200)
             stopgame();
             // clearInterval(runner);
             
@@ -267,7 +271,10 @@ function stopgame(){
 }
 
 addEventListener("keydown", (event)=>{
-    
+    if (dead){
+        restart()
+        return;
+    }
     if(event.key == "ArrowUp"){
         snek.turn(left);
     }
@@ -339,6 +346,10 @@ addEventListener("touchcancel", (event) =>{
 
 
 addEventListener("touchmove", (event) =>{
+    if (dead){
+        restart();
+        return;
+    }
         var dir = getSwipe(center, event.touches[0])
         console.log(dir)
 
