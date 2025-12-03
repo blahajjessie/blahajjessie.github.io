@@ -11,6 +11,13 @@ function setScale() {
     ctx.canvas.width = vmin;
     ctx.canvas.height = vmin;
     console.log(vmin)
+    if (board == null || snek == null){
+        return;
+    }
+    printBoard(board, snek);
+
+
+
 }
 window.onload = setScale
 window.setTimeout(setScale, 10)
@@ -90,7 +97,7 @@ class snake {
         let headx = this.head.dot.x;
         let heady = this.head.dot.y;
         let piece = this.head.next;
-        while (piece && piece !== null && piece.next && piece.next !== null) {
+        while (piece && piece !== null ) { 
             if (piece.dot.x == headx && piece.dot.y == heady) {
                 return true;
             }
@@ -109,20 +116,6 @@ class snake {
         }
         let nextdot = board[nextx][nexty]
         if (typeof nextdot === "undefined" || this.hitWall()) return false;
-        let newhead = new snakepart(nextdot, true, false);
-        newhead.next = this.head;
-        newhead.prev = null;
-        newhead.dot.isSnake = true;
-
-        // Update the old head
-        this.head.ishead = false;
-        this.head.prev = newhead;
-
-        // update the snake
-        this.head = newhead;
-        if (this.hitSelf()) {
-            return false;
-        }
         // check if we eated
         if (this.head.dot.isApple) {
             this.head.dot.isApple = false;
@@ -137,6 +130,21 @@ class snake {
             this.tail.prev.istail = true;
             this.tail = this.tail.prev;
         }
+        // update the head 
+        let newhead = new snakepart(nextdot, true, false);
+        newhead.next = this.head;
+        newhead.prev = null;
+        newhead.dot.isSnake = true;
+
+        // Update the old head
+        this.head.ishead = false;
+        this.head.prev = newhead;
+
+        // update the snake
+        this.head = newhead;
+
+
+
         if (this.hitSelf()) {
             return false;
         }
@@ -176,7 +184,6 @@ function printBoard(gameboard, thisSnake) {
     let realBoard = maxh() - border * 2
     let square = realBoard / (squareSize);
     for (let i of gameboard) {
-
         for (let j of i) {
             if (j.isApple) {
                 canvas.fillStyle = "red"
@@ -230,13 +237,16 @@ function createGame() {
 
     return setInterval(() => {
         res = snek.move();
-        printBoard(board, snek);
-        if (!res) {
-            document.getElementById("snakey").getContext("2d").font = "48px sans-serif"
-            document.getElementById("snakey").getContext("2d").fillStyle = "blue"
-            document.getElementById("snakey").getContext("2d").fillText("You lose. Press a key or swipe to restart.", 100, 100, maxh() - 200)
-            stopgame();
+        if (board && board != null){
+            printBoard(board, snek);
+            if (!res) {
+                document.getElementById("snakey").getContext("2d").font = "48px sans-serif"
+                document.getElementById("snakey").getContext("2d").fillStyle = "blue"
+                document.getElementById("snakey").getContext("2d").fillText("You lose. Press a key or swipe to restart.", 100, 100, maxh() - 200)
+                stopgame();
+            }
         }
+        
     }, 200 / speed);
 
 }
