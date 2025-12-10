@@ -1,5 +1,5 @@
 // a reasonable speed is between 1 and 5
-const speed = 2
+const speed = 1
 const squareSize = 20;
 
 
@@ -19,6 +19,7 @@ function setScale() {
 
 
 }
+var keyCache = []
 window.onload = setScale
 window.setTimeout(setScale, 10)
 
@@ -76,6 +77,7 @@ class snake {
         this.head.prev = null;
         this.olddir = upwards;
         this.timeout = false;
+        this.speed = speed
         // Generate len pieces between the head and the tail
         for (let i = 0; i <= len; i++) {
             curr.next = new snakepart(board[curr.dot.x - this.direction[0]][curr.dot.y - this.direction[1]], false, i == len)
@@ -120,6 +122,7 @@ class snake {
         if (this.head.dot.isApple) {
             this.head.dot.isApple = false;
             this.len++;
+            this.speed += .02
             // create a new apple
             makeApple();
         }
@@ -223,6 +226,26 @@ function printBoard(gameboard, thisSnake) {
 
 var snek;
 
+function loop(){
+    console.log(snek);
+
+    let res = snek.move();
+    if (board && board != null){
+        printBoard(board, snek);
+        if (!res) {
+            document.getElementById("snakey").getContext("2d").font = "48px sans-serif"
+            document.getElementById("snakey").getContext("2d").fillStyle = "blue"
+            document.getElementById("snakey").getContext("2d").fillText("You lose. Press a key or swipe to restart.", 100, 100, maxh() - 200)
+            stopgame();
+            dead = true;
+            // exit if we died
+            return;
+        }
+    }
+    // recursion with a speed increase
+    setTimeout(loop, 200/snek.speed);
+}
+
 function createGame() {
     board = []
     for (let i = 0; i < boardx; i++) {
@@ -234,38 +257,28 @@ function createGame() {
     }
     snek = new snake(10, 4, 1)
     makeApple();
-
-    return setInterval(() => {
-        res = snek.move();
-        if (board && board != null){
-            printBoard(board, snek);
-            if (!res) {
-                document.getElementById("snakey").getContext("2d").font = "48px sans-serif"
-                document.getElementById("snakey").getContext("2d").fillStyle = "blue"
-                document.getElementById("snakey").getContext("2d").fillText("You lose. Press a key or swipe to restart.", 100, 100, maxh() - 200)
-                stopgame();
-            }
-        }
-        
-    }, 200 / speed);
+    console.log(snek);
+    setTimeout(loop, 200/snek.speed);
 
 }
 
-var runner = createGame();
+// var runner = createGame();
+createGame();
 function restart() {
     if (dead) {
-        runner = createGame();
+        // runner = createGame();
+        createGame();
         dead = false;
     }
 }
 
 function stopgame() {
-    console.log(runner);
-    clearInterval(runner);
+    // console.log(runner);
+    // clearInterval(runner);
     dead = true;
 }
 
-var keyCache = []
+
 
 addEventListener("keydown", (event) => {
     if (dead) {
