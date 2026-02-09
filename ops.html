@@ -31,7 +31,7 @@
                 if (document.getElementById("result").value == ans){
                     corr++
                 }
-                document.getElementById("ops").innerText = "Your speed is: " + (1000 * corr / (Date.now() - firstTime)).toFixed(5) + " OPS, or " +  (.000000001 * corr / (Date.now() - firstTime)).toFixed(5) + " TOPS";
+                document.getElementById("ops").innerText = "Your speed is: " + (1000 * corr / (Date.now() - firstTime)).toFixed(5) + " OPS, or " +  (.000000001 * corr / (Date.now() - firstTime)).toFixed(15) + " TOPS";
 
                 document.getElementById("result").value = ""
         }
