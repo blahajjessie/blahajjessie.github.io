@@ -30,9 +30,9 @@
         function test(){
                 if (document.getElementById("result").value == ans){
                     corr++
-                    document.getElementById("ops").innerText = "Your speed is: " + 1000 * corr / (Date.now() - firstTime) + " ops";
-                    document.getElementById("result").value = ""
+                    document.getElementById("ops").innerText = "Your speed is: " + 1000 * corr / (Date.now() - firstTime) + " OPS, or " +  (.000000001 * corr / (Date.now() - firstTime)) + "TOPS";
                 }
+                document.getElementById("result").value = ""
         }
 
         document.addEventListener("keydown", e=>{
