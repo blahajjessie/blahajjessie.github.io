@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <script>
+        var add = (a, b) => a+b;
+        var sub = (a, b) => a-b;
+        var mul = (a, b) => a*b;
+        var ops = [add, sub, mul]
+        var sym = [" + ", " - ", " * "]
+        
+        var rand4 = ()=> Math.floor(Math.random() *16 - 8)
+        var a = 0
+        var b = 0
+        var op = (a,b)=> NaN;
+        var os = 0;
+        var ans = op(a, b);
+        var corr = 0;
+        firstTime = 0
+        function ref(){
+            a = rand4();
+            b = rand4();
+            let t = Math.floor(Math.random() * 3)
+            op = ops[t];
+            os = sym[t];
+            ans = op(a, b);
+            document.getElementById("math").innerText = a + os + b + " = "
+        }
+        function recalc(){
+            
+        }
+        function test(){
+                if (document.getElementById("result").value == ans){
+                    corr++
+                    document.getElementById("ops").innerText = "Your speed is: " + 1000 * corr / (Date.now() - firstTime) + " ops";
+                    document.getElementById("result").value = ""
+                }
+        }
+
+        document.addEventListener("keydown", e=>{
+            if (e.key == "Enter"){
+                if (firstTime == 0){
+                    firstTime = Date.now();
+                }
+                test();
+                ref();
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1 id="math"> press enter to start</h1>
+    <input type="text" id="result">
+    <h2 id="ops"> Your speed is </h2>  
+
+    <!-- <div id="opts" onclick="recalc">
+        <h3> Select from these options</h3>
+        Operations: 
+        <input name="availops" type="checkbox" readonly="readonly" disabled="disabled" value = "add" checked> Addition
+        <input name="availops" type="checkbox" value = "sub" checked> Subtraction
+        <input name="availops" type="checkbox" value = "sub" checked > Multiplication
+        <br>
+
+        Signed? 
+        <input name="signed" type="checkbox" value = "true" checked> signed
+        <br>
+
+        Number of bits:
+        <input name="bits" type="radio" value = "4"> 4 bit
+        <input name="bits" type="radio" value = "8"> 8 bit
+    </div> -->
+
+
+
+
+
+
+
+</body>
